@@ -710,6 +710,22 @@ footer .brandw{display:flex;align-items:center;gap:10px;color:var(--ink);font-we
   .dd-panel{position:absolute!important;left:12px;right:12px;top:calc(100% - 2px)!important;width:auto!important;z-index:40;max-height:70vh;overflow-y:auto}
   .top{backdrop-filter:none;background:#fff}
 }
+
+/* v31 agenda + mobile bar text */
+.agenda{display:flex;flex-direction:column;gap:8px;margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.ag{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center;text-decoration:none;color:var(--ink);background:var(--cream);border-radius:12px;padding:8px 10px 8px 8px;border-left:5px solid var(--c)}
+.ag .ad{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--c);color:#fff;border-radius:9px;padding:6px 4px;font:600 11px var(--f-body);line-height:1.2}
+.ag .ad b{font:700 15px/1.1 var(--f-title)}
+.ag .an{font:600 14.5px/1.4 var(--f-title)}
+.ag.past{opacity:.5}
+.ag:hover{background:#FFF3C4}
+@media (min-width:621px){.agenda{display:none}}
+@media (max-width:620px){
+  .wk{grid-template-rows:28px repeat(var(--rows),auto) 6px!important}
+  .bar{min-height:7px;padding:0;font-size:0;line-height:0;border-radius:4px}
+  .bar.long{font-size:9.5px;line-height:1.25;padding:2px 5px;min-height:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+  .bar.long>span{overflow:hidden;text-overflow:ellipsis}
+}
 </style>
 </head>
 <body>
@@ -802,6 +818,7 @@ footer .brandw{display:flex;align-items:center;gap:10px;color:var(--ink);font-we
         </div>
         <div class="cal-legend" id="cal-legend"></div>
         <div class="cal-grid" id="cal-grid" role="grid"></div>
+        <div class="agenda" id="cal-agenda"></div>
       </div>
       <div class="cal-side">
         <div class="card cal-day" id="cal-day"></div>
@@ -1478,12 +1495,18 @@ footer .brandw{display:flex;align-items:center;gap:10px;color:var(--ink);font-we
         });
         segs.forEach(function(sg){
           var pastSeg=(function(){var ld=days[sg.s+sg.len-1];return vy<TY||(vy===TY&&(vm<TMo||(vm===TMo&&ld<TD)))})();
-          h+='<span class="bar'+(sg.ol?' cl':'')+(sg.or?' cr':'')+(pastSeg?' past':'')+'" style="--c:'+sg.e.c+';grid-column:'+(sg.s+1)+' / span '+sg.len+';grid-row:'+(sg.L+2)+'">'+bi(sg.e.shth,sg.e.shen)+'</span>';
+          h+='<span class="bar'+(sg.len>=3?' long':'')+(sg.ol?' cl':'')+(sg.or?' cr':'')+(pastSeg?' past':'')+'" style="--c:'+sg.e.c+';grid-column:'+(sg.s+1)+' / span '+sg.len+';grid-row:'+(sg.L+2)+'">'+bi(sg.e.shth,sg.e.shen)+'</span>';
         });
         h+='</div>';
       }
       G.innerHTML=h;
       G.querySelectorAll('.cd[data-d]').forEach(function(b){b.onclick=function(){sel={y:vy,m:vm,d:+b.dataset.d};draw()}});
+      var ag=[];EV.forEach(function(e){if(hide[e.grp||e.id])return;var d=1;while(d<=n){if(e.on(vy,vm,d)){var s=d;while(d+1<=n&&e.on(vy,vm,d+1))d++;ag.push({e:e,s:s,t:d})}d++}});
+      ag.sort(function(a,b){return a.s-b.s||a.t-b.t});
+      document.getElementById('cal-agenda').innerHTML='<span class="k">'+bi('กิจกรรมในเดือนนี้','This month')+'</span>'+(ag.length?ag.map(function(a){
+        var past=(vy<TY||(vy===TY&&(vm<TMo||(vm===TMo&&a.t<TD))));
+        var dt=a.s===a.t?(a.s+''):(a.s+'–'+a.t);
+        return '<a class="ag'+(past?' past':'')+'" href="'+a.e.href+'" style="--c:'+a.e.c+'"><span class="ad"><b>'+dt+'</b>'+bi(TS[vm],ES[vm])+'</span><span class="an">'+bi(a.e.shth,a.e.shen)+'</span></a>'}).join(''):'<p class="muted">'+bi('ยังไม่มีกิจกรรม','Nothing scheduled')+'</p>');
       side();
     }
     function side(){
