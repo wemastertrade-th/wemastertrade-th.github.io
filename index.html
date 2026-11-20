@@ -1618,6 +1618,39 @@ footer .brandw{display:flex;align-items:center;gap:10px;color:var(--ink);font-we
   var saved=null; try{saved=localStorage.getItem('wmt-lang')}catch(e){}
   setLang(saved==='en'?'en':'th');
 })();
+/* Google Analytics 4 — only on the public GitHub Pages site, with a PDPA consent banner (Consent Mode v2) */
+(function(){
+  var GA='G-XLXBW5WY98';
+  if(!/^G-[A-Z0-9]{6,}$/.test(GA)||GA==='G-XXXXXXXXXX'||!/github\.io$/.test(location.hostname))return;
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=gtag;
+  var c=null;try{c=localStorage.getItem('wmt-consent')}catch(e){}
+  gtag('consent','default',{analytics_storage:c==='yes'?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  gtag('js',new Date());gtag('config',GA,{send_page_view:false});
+  var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA;document.head.appendChild(s);
+  function cur(){return (location.hash||'').slice(1)||'home'}
+  function pv(){var id=cur();gtag('event','page_view',{page_title:'WMT TH | '+id,page_location:location.origin+location.pathname+'#'+id,page_path:'/'+id})}
+  pv();window.addEventListener('hashchange',pv);
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a,button');if(!a||a.closest('.ck'))return;
+    var en=a.querySelector('.en'),txt=((en||a).textContent||'').replace(/\s+/g,' ').trim().slice(0,80);
+    var href=a.getAttribute('href')||'';
+    if(a.tagName==='A'&&href&&href.charAt(0)!=='#'){
+      gtag('event','click_link',{link_text:txt,link_domain:a.hostname,link_url:a.href.split('?')[0].split('#')[0],page:cur()});
+    }else if(a.classList.contains('btn')||a.hasAttribute('data-zoom')){
+      gtag('event','click_button',{link_text:txt,page:cur()});
+    }
+  },true);
+  if(c===null){
+    var st=document.createElement('style');
+    st.textContent='.ck{position:fixed;z-index:90;left:16px;right:16px;bottom:16px;max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 40px rgba(34,17,100,.18);padding:16px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:14px;line-height:1.55;color:var(--ink)}.ck p{margin:0;flex:1 1 260px}.ck .bx{display:flex;gap:8px;margin-left:auto}.ck button{font:700 14px Anuphan,system-ui,sans-serif;border-radius:99px;padding:9px 18px;cursor:pointer;border:1.5px solid var(--line);background:#fff;color:var(--ink)}.ck button.ok{background:var(--yellow);border-color:var(--yellow);color:var(--navy)}';
+    document.head.appendChild(st);
+    var d=document.createElement('div');d.className='ck';d.setAttribute('role','dialog');d.setAttribute('aria-label','Cookies');
+    d.innerHTML='<p><span class="th">เว็บไซต์นี้ใช้คุกกี้เพื่อวิเคราะห์การใช้งานและปรับปรุงเนื้อหาให้ดียิ่งขึ้น คุณยินยอมให้เราใช้คุกกี้เพื่อการวิเคราะห์หรือไม่?</span><span class="en">We use analytics cookies to understand how this site is used and improve it. Do you accept analytics cookies?</span></p><div class="bx"><button type="button" class="no"><span class="th">ปฏิเสธ</span><span class="en">Decline</span></button><button type="button" class="ok"><span class="th">ยอมรับ</span><span class="en">Accept</span></button></div>';
+    document.body.appendChild(d);
+    function done(v){try{localStorage.setItem('wmt-consent',v)}catch(e){}if(v==='yes')gtag('consent','update',{analytics_storage:'granted'});d.remove()}
+    d.querySelector('.ok').onclick=function(){done('yes')};d.querySelector('.no').onclick=function(){done('no')};
+  }
+})();
 </script>
 
 </body>
