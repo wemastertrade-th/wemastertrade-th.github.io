@@ -749,6 +749,24 @@ footer .brandw{display:flex;align-items:center;gap:10px;color:var(--ink);font-we
 .lkp .bt button{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
 .lkp .x{position:absolute;top:10px;right:10px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:rgba(20,11,63,.7);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 @media (max-width:560px){.lkp .pic{aspect-ratio:4/3}.lkp .tx{padding:2px 18px 20px}.lkp .tx h3{font-size:22px}.lkp .bt a,.lkp .bt button{flex:1 1 100%}}
+
+/* Thai offers right now */
+.nowbox{margin:22px 0 4px;background:linear-gradient(135deg,#221164,#2D09BD);border-radius:24px;padding:18px 18px 20px;color:#fff;box-shadow:0 14px 34px rgba(34,17,100,.22)}
+.nowhd{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.nowhd .flag{flex:none}
+.nowhd h2{font-family:var(--f-title);font-weight:700;font-size:clamp(20px,2.6vw,26px);margin:0;flex:1;min-width:0}
+.nowhd a{color:#FACD12;font-weight:700;text-decoration:none;white-space:nowrap}
+.nowlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.nowc{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:10px;color:#fff;text-decoration:none;min-width:0;transition:background .18s}
+.nowc:hover{background:rgba(255,255,255,.15)}
+.nowc img{width:76px;height:76px;border-radius:12px;object-fit:cover;flex:none}
+.nowc .t{min-width:0;display:flex;flex-direction:column;gap:4px}
+.nowc b{font-family:var(--f-title);font-weight:700;font-size:17px;line-height:1.25}
+.nowc small{font-size:13.5px;color:rgba(255,255,255,.8);line-height:1.4}
+.nowc .st{align-self:flex-start;white-space:nowrap;font-size:12.5px;font-weight:700;border-radius:99px;padding:3px 10px;background:#FACD12;color:#221164}
+.nowc .st.up{background:rgba(255,255,255,.18);color:#fff}
+.fcard.big h3{font-size:22px}
+@media (max-width:560px){.nowbox{padding:16px 14px 16px;border-radius:20px}.nowc img{width:64px;height:64px}}
 </style>
 </head>
 <body>
@@ -811,6 +829,10 @@ footer .brandw{display:flex;align-items:center;gap:10px;color:var(--ink);font-we
         </div>
       </div>
     </div>
+    <div class="nowbox" id="nowbox" hidden>
+      <div class="nowhd"><span class="flag"></span><h2><span class="th">โปรโมชั่นลูกค้าไทย ตอนนี้</span><span class="en">Thai client offers right now</span></h2><a href="#thai"><span class="th">ดูทั้งหมด</span><span class="en">See all</span> →</a></div>
+      <div class="nowlist" id="nowlist"></div>
+    </div>
     <div class="kgrid">
       <div class="kpi"><b>213</b><span><span class="th">บทความในคู่มือภาษาไทย</span><span class="en">Thai guide articles</span></span></div>
       <div class="kpi"><b>$50K</b><span><span class="th">รางวัลสูงสุด Golden Week Trading</span><span class="en">Golden Week Trading top prize</span></span></div>
@@ -822,10 +844,10 @@ footer .brandw{display:flex;align-items:center;gap:10px;color:var(--ink);font-we
   <div class="wrap sec">
     <div class="sec-h"><div><span class="k"><span class="th">ไฮไลต์สัปดาห์นี้</span><span class="en">This week</span></span><h2><span class="th">ห้ามพลาด</span><span class="en">Don't miss</span></h2><p><span class="th">4 กิจกรรมเด่นที่เทรดเดอร์ไทยไม่ควรพลาดในสัปดาห์นี้</span><span class="en">Four highlights Thai traders shouldn't miss this week.</span></p></div></div>
     <div class="feature">
-      <a class="fcard" href="#gold"><div class="img"><img data-img="gw_poster" alt="Golden Week Trading Challenge"></div><div class="bd"><span class="chip navy">XAUUSD · $50K</span><h3>Golden Week Trading</h3><p><span class="th">แข่งเทรดทองคำ 20 ที่นั่ง ชิงบัญชีสูงสุด $50,000</span><span class="en">Gold contest, 20 seats, up to a $50,000 account.</span></p><span class="more"><span class="th">ดูรายละเอียด</span><span class="en">Details</span> →</span></div></a>
-      <a class="fcard" href="#payout"><div class="img"><img data-img="top_po" alt="Thailand Weekly Top Payout"></div><div class="bd"><span class="chip red">Thailand Weekly</span><h3>Top Payout</h3><p><span class="th">แชร์ประสบการณ์ รับเงินสด $100 พร้อมวอเชอร์ส่วนลด 30%</span><span class="en">Share your story: $100 cash plus a 30% voucher.</span></p><span class="more"><span class="th">ดูอันดับ</span><span class="en">Ranking</span> →</span></div></a>
-      <a class="fcard" href="#thai"><div class="img"><img data-img="chest" alt="Mystery Dashboard Chest"></div><div class="bd"><span class="chip red"><span class="th">ลอยกระทง · 10–30 พ.ย.</span><span class="en">Loy Krathong · 10–30 Nov</span></span><h3>Mystery Dashboard Chest</h3><p><span class="th">ยิ่งซื้อ ยิ่งมีสิทธิ์ลุ้น รางวัลกว่า 350 รางวัล เปิดหีบ 28–30 พ.ย.</span><span class="en">The more you buy, the more chances. 350+ prizes, chests open 28–30 Nov.</span></p><span class="more"><span class="th">ดูรายละเอียด</span><span class="en">Details</span> →</span></div></a>
-      <a class="fcard" href="#quiz"><div class="img"><img data-img="quiz_poster" alt="Trading Guide Quiz Challenge"></div><div class="bd"><span class="chip red"><span class="th">ลงทะเบียน 4–13 พ.ย.</span><span class="en">Register 4–13 Nov</span></span><h3>Quiz Challenge</h3><p><span class="th">ลุ้นรับบัญชีเทรดมูลค่าสูงสุดถึง $100K แสดงความมั่นใจในความรู้ของคุณ</span><span class="en">Win a trading account worth up to $100K. Show what you know.</span></p><span class="more"><span class="th">สมัครเข้าร่วม</span><span class="en">Join now</span> →</span></div></a>
+      <a class="fcard big" href="#gold"><div class="img"><img data-img="gw_poster" alt="Golden Week Trading Challenge"></div><div class="bd"><span class="chip navy" id="ft-gw">XAUUSD · $50K</span><h3>Golden Week Trading</h3><p><span class="th">แข่งเทรดทองคำ 20 ที่นั่ง ชิงบัญชีสูงสุด $50,000</span><span class="en">Gold contest, 20 seats, up to a $50,000 account.</span></p><span class="more"><span class="th">ดูรายละเอียดและ Leaderboard</span><span class="en">Details &amp; leaderboard</span> →</span></div></a>
+      <a class="fcard big" href="#quest"><div class="img"><img data-img="p_quest" alt="After-payout quests"></div><div class="bd"><span class="chip ok"><span class="th">ทำทันทีหลังรับ Payout</span><span class="en">Right after every payout</span></span><h3><span class="th">Quest หลังรับ Payout</span><span class="en">After-payout Quests</span></h3><p><span class="th">ทำ 3 Quest หลังได้รับ Payout เพื่อให้การตรวจสอบและการจ่ายเงินรอบถัดไปรวดเร็วยิ่งขึ้น</span><span class="en">Do 3 quests after each payout so your next payout is reviewed and paid faster.</span></p><span class="more"><span class="th">เริ่มทำ Quest</span><span class="en">Start the quests</span> →</span></div></a>
+      <a class="fcard big" href="#quiz"><div class="img"><img data-img="quiz_poster" alt="Trading Guide Quiz Challenge"></div><div class="bd"><span class="chip red" id="ft-qz"><span class="th">ลงทะเบียน 4–13 พ.ย.</span><span class="en">Register 4–13 Nov</span></span><h3>Quiz Challenge</h3><p><span class="th">ลุ้นรับบัญชีเทรดมูลค่าสูงสุดถึง $100K แสดงความมั่นใจในความรู้ของคุณ</span><span class="en">Win a trading account worth up to $100K. Show what you know.</span></p><span class="more"><span class="th">ดูรายละเอียด</span><span class="en">Details</span> →</span></div></a>
+      <a class="fcard big" href="#payout"><div class="img"><img data-img="top_po" alt="Thailand Weekly Top Payout"></div><div class="bd"><span class="chip red">Thailand Weekly</span><h3>Top Payout</h3><p><span class="th">แชร์ประสบการณ์ รับเงินสด $100 พร้อมวอเชอร์ส่วนลด 30%</span><span class="en">Share your story: $100 cash plus a 30% voucher.</span></p><span class="more"><span class="th">ดูอันดับ</span><span class="en">Ranking</span> →</span></div></a>
     </div>
   </div>
 
@@ -1683,6 +1705,60 @@ footer .brandw{display:flex;align-items:center;gap:10px;color:var(--ink);font-we
   function esc(e){if(e.key==='Escape')close()}
   w.addEventListener('click',function(e){if(e.target===w||e.target.closest('.x,.later'))close();else if(e.target.closest('a'))close()});
   setTimeout(function(){document.body.appendChild(w);requestAnimationFrame(function(){w.classList.add('on')});document.addEventListener('keydown',esc);w.querySelector('.bt a').focus({preventScroll:true});if(window.gtag)gtag('event','popup_view',{popup:'loy_krathong'})},700);
+})();
+
+/* Home: live Thai offers + status chips (dates in UTC+7) */
+(function(){
+  function B(a,b){return '<span class="th">'+a+'</span><span class="en">'+b+'</span>'}
+  var MT=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'],ME=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var n=new Date(Date.now()+7*3600e3),Y=n.getUTCFullYear(),M=n.getUTCMonth(),D=n.getUTCDate();
+  function key(d){return d.getUTCFullYear()*10000+(d.getUTCMonth()+1)*100+d.getUTCDate()}
+  function mk(k){return new Date(Date.UTC(Math.floor(k/10000),Math.floor(k/100)%100-1,k%100))}
+  var T=Date.UTC(Y,M,D),TK=Y*10000+(M+1)*100+D;
+  function days(k){return Math.round((mk(k)-T)/864e5)}
+  function dt(k){var d=mk(k);return [d.getUTCDate()+' '+MT[d.getUTCMonth()],d.getUTCDate()+' '+ME[d.getUTCMonth()]]}
+  function monthly(list,len){ /* next window from a list of start days per month */
+    var out=[];for(var mo=-1;mo<2;mo++){list.forEach(function(sd){var s=new Date(Date.UTC(Y,M+mo,sd));if(s.getUTCDate()!==sd)return;var e=new Date(s.getTime()+(len-1)*864e5);out.push([key(s),key(e)])})}
+    return out.filter(function(w){return w[1]>=TK}).sort(function(a,b){return a[0]-b[0]})[0];
+  }
+  var P=[
+    {img:'chest',href:'#thai',t:['Mystery Dashboard Chest','Mystery Dashboard Chest'],w:[[20261110,20261127,'ซื้อแพ็กเกจ รับโค้ดลุ้นหีบ','Buy a package, get chest codes'],[20261128,20261130,'เปิดหีบบน Dashboard ลุ้นรางวัล','Open your chest on the Dashboard']]},
+    {img:'sharepts',href:'#thai',t:['แชร์ความรู้ สะสมคะแนน','Share More, Collect Points'],w:[[20261101,20261130,'ปลดล็อกบัญชีสูงสุด $50,000','Unlock an account up to $50,000']]},
+    {img:'pay30',href:'#thai',t:['Payday Flash Sale ลด 34%','Payday Flash Sale: 34% off'],pay:1},
+    {img:'survey',href:'#thai',t:['แบบสำรวจ รับส่วนลด 34%','Survey for a 34% discount'],sv:1}
+  ];
+  var items=[];
+  P.forEach(function(p){
+    var w=null,sub;
+    if(p.pay){var x=monthly([10,30],1);if(x){w=[x[0],x[1]];sub=['ใช้โค้ด PAYTHAI34 วันที่ 10 และ 30','Code PAYTHAI34 on the 10th and 30th'];p.img=(x[0]%100===10)?'pay10':'pay30'}}
+    else if(p.sv){var y=monthly([1],3);if(y){w=y;sub=['ทำแบบสำรวจวันที่ 1–3 ของทุกเดือน','Survey on the 1st–3rd of each month']}}
+    else{for(var i=0;i<p.w.length;i++){if(p.w[i][1]>=TK){w=p.w[i];sub=[p.w[i][2],p.w[i][3]];break}}}
+    if(!w)return;
+    var act=w[0]<=TK, ds=days(w[0]), de=days(w[1]);
+    if(!act&&ds>7)return;
+    var st,up=!act;
+    if(act){st=de===0?['วันนี้วันสุดท้าย!','Last day today!']:['เหลืออีก '+(de+1)+' วัน',(de+1)+' days left']}
+    else{var s=dt(w[0]);st=ds===1?['เริ่มพรุ่งนี้','Starts tomorrow']:['เริ่ม '+s[0],'Starts '+s[1]]}
+    items.push({p:p,sub:sub,st:st,up:up,ord:(act?0:1)*100+(act?de:ds)});
+  });
+  items.sort(function(a,b){return a.ord-b.ord});
+  var box=document.getElementById('nowbox'),list=document.getElementById('nowlist');
+  if(box&&list&&items.length){
+    list.innerHTML=items.map(function(o){return '<a class="nowc" href="'+o.p.href+'"><img alt="" data-k="'+o.p.img+'"><span class="t"><span class="st'+(o.up?' up':'')+'">'+B(o.st[0],o.st[1])+'</span><b>'+B(o.p.t[0],o.p.t[1])+'</b><small>'+B(o.sub[0],o.sub[1])+'</small></span></a>'}).join('');
+    list.querySelectorAll('img[data-k]').forEach(function(im){im.src=IMGS[im.dataset.k]||''});
+    box.hidden=false;
+  }
+  /* status chips on the feature cards */
+  var gw=document.getElementById('ft-gw');
+  if(gw){var R=[[20261111,20261111,20261116,20261120],[20261125,20261125,20261130,20261204]],s=null;
+    for(var r=0;r<R.length;r++){var a=R[r];
+      if(TK<a[0]){s=['รอบ '+(r+1)+' เปิดลงทะเบียน '+dt(a[0])[0],'Round '+(r+1)+' sign-up '+dt(a[0])[1]];break}
+      if(TK<a[2]){s=['รอบ '+(r+1)+' เริ่มแข่ง '+dt(a[2])[0],'Round '+(r+1)+' starts '+dt(a[2])[1]];break}
+      if(TK<=a[3]){s=['กำลังแข่งรอบ '+(r+1)+' ถึง '+dt(a[3])[0],'Round '+(r+1)+' live until '+dt(a[3])[1]];break}}
+    if(!s)s=['จบการแข่งขันแล้ว · ดูผล Leaderboard','Contest ended · see the leaderboard'];
+    gw.innerHTML=B(s[0],s[1]);}
+  var qz=document.getElementById('ft-qz');
+  if(qz){var q=TK<20261104?['เปิดลงทะเบียน 4 พ.ย.','Sign-up opens 4 Nov']:TK<=20261113?['ลงทะเบียนถึง 13 พ.ย.','Register until 13 Nov']:TK===20261114?['แข่งวันนี้!','Contest today!']:['จบรอบ พ.ย. แล้ว','November round ended'];qz.innerHTML=B(q[0],q[1]);if(TK>20261114){qz.classList.remove('red');qz.classList.add('wait')}}
 })();
 </script>
 
