@@ -1647,7 +1647,8 @@ footer .brandw{display:flex;align-items:center;gap:10px;color:var(--ink);font-we
   var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA;document.head.appendChild(s);
   function cur(){return (location.hash||'').slice(1)||'home'}
   function pv(){var id=cur();gtag('event','page_view',{page_title:'WMT TH | '+id,page_location:location.origin+location.pathname+'#'+id,page_path:'/'+id})}
-  pv();window.addEventListener('hashchange',pv);
+  /* first load is counted by GA's automatic page_view; only in-hub navigation is sent manually */
+  window.addEventListener('hashchange',pv);
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a,button');if(!a||a.closest('.ck'))return;
     var en=a.querySelector('.en'),txt=((en||a).textContent||'').replace(/\s+/g,' ').trim().slice(0,80);
